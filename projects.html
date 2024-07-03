@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="favicon (1).ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="projects.css">
+    <title>Projects</title>
+</head>
+<body>
+    <div class="container">
+        <div class="image">
+            <a href="https://d8rreon.github.io/mazegame/"><img src="pong2.jpg"></a>
+            <div class="caption1"> Maze Game with Javascript</div>
+        </div>
+        <div class="image">
+            <a href="https://d8rreon.github.io/pong/"><img src="pong.jpg"></a>
+            <div class="caption2">Ping pong Game with Javascript</div>
+        </div>
+        <div class="image">
+            <a href="https://d8rreon.github.io/bear/"><img src="bear.jpg"></a>
+            <div class="caption3"> Bear Game with Javascript</div>
+        </div>
+
+        <div class="button">
+            <a onclick="nextimg(-1)" class="prev">&#10094;</a>
+            <a onclick="nextimg(1)" class="next">&#10095;</a>
+        </div>
+
+        <div class="dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+    <script>
+
+        var imageno =1;
+        displayimg(imageno);
+
+        function nextimg(n){
+            displayimg(imageno += n)
+        }
+
+        function currentSlide(n){
+            displayimg(imageno = n)
+        }
+
+        function displayimg(n){
+            var i;
+            var image = document.getElementsByClassName("image");
+            var dots = document.getElementsByClassName("dot");
+
+            if(n > image.length){
+                imageno = 1;
+            }
+
+            if(n < 1){
+                imageno = image.length;
+            }
+
+            for(i=0; i < image.length; i++){
+                image[i].style.display = "none";
+            }
+
+            for(i=0; i < dots.length; i++){
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+
+            image[imageno - 1].style.display ="block";
+            dots[imageno - 1].className += " active";
+
+        }
+
+    </script>
+</body>
+</html>
